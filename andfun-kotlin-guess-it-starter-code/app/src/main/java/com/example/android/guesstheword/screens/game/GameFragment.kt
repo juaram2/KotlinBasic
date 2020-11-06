@@ -26,6 +26,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import com.example.android.guesstheword.R
@@ -52,8 +53,8 @@ class GameFragment : Fragment() {
         )
 
         Log.i("GameFragment","Called ViewModel")
-        @Suppress("DEPRECATION")
-        gameViewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
+//        gameViewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
+        gameViewModel = ViewModelProvider(this)[GameViewModel::class.java]
 
         binding.correctButton.setOnClickListener {
             gameViewModel.onCorrect()
