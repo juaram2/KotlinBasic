@@ -32,17 +32,20 @@ class SleepTrackerViewModel(
 
   private var viewModelJob = Job()
 
-  override fun onCleared() {
-    super.onCleared()
-    viewModelJob.cancel()
-  }
-
   private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
   private var tonight = MutableLiveData<SleepNight?>()
   private val nights = database.getAllNights()
 
   val nightsString = Transformations.map(nights) {nights ->
     formatNights(nights, application.resources)
+  }
+
+  private val _naavigateToSleepQuality = MutableLiveData<SleepNight>()
+  val navigateToSleepQuality: LiveData<SleepNight>
+    get() = _naavigateToSleepQuality
+
+  fun doneNavigating(){
+    _naavigateToSleepQuality.value = null
   }
 
   init {
@@ -85,6 +88,8 @@ class SleepTrackerViewModel(
       oldNight.endTimeMilli = System.currentTimeMillis()
 
       update(oldNight)
+
+      _naavigateToSleepQuality.value = oldNight
     }
   }
 
@@ -101,11 +106,15 @@ class SleepTrackerViewModel(
     }
   }
 
-  suspend fun clear() {
+  private suspend fun clear() {
     withContext(Dispatchers.IO) {
       database.clear()
     }
   }
 
+  override fun onCleared() {
+    super.onCleared()
+    viewModelJob.cancel()
+  }
 }
 
