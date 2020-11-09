@@ -56,12 +56,7 @@ class GameFragment : Fragment() {
 //        gameViewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
         gameViewModel = ViewModelProvider(this)[GameViewModel::class.java]
 
-        binding.correctButton.setOnClickListener {
-            gameViewModel.onCorrect()
-        }
-        binding.skipButton.setOnClickListener {
-            gameViewModel.onSkip()
-        }
+        binding.gameViewModel = gameViewModel
 
         gameViewModel.word.observe(viewLifecycleOwner, Observer { newWord ->
             binding.wordText.text = newWord
