@@ -33,7 +33,7 @@ import kotlinx.android.synthetic.main.list_item_sleep_night.view.*
 class SleepNightAdapter(val clickListener: SleepNightListener): ListAdapter<SleepNight, SleepNightAdapter.ViewHolder>(SleepNightDiffCallback()){
   override fun onBindViewHolder(holder: ViewHolder, position: Int) {
     var item = getItem(position)
-    holder.bind(clickListener, getItem(position)!!)
+    holder.bind(clickListener, item)
   }
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
