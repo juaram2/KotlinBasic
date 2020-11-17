@@ -7,6 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:fontFamily">@font/lobster_two</item>
+        <item name="textAppearanceHeadline6">@style/CustomHeadline6</item>
     </style>
 
     <style name="TextAppearance.Title" parent="TextAppearance.MaterialComponents.Headline6">
@@ -15,6 +16,10 @@
     </style>
 
     <style name="TextAppearance.Subtitle" parent="TextAppearance.Title" >
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="CustomHeadline6" parent="TextAppearance.MaterialComponents.Headline6">
         <item name="android:textSize">18sp</item>
     </style>
 </resources>
