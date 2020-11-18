@@ -20,7 +20,6 @@ import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
-import android.text.format.DateUtils
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -55,8 +54,8 @@ class GameFragment : Fragment() {
         )
 
         Log.i("GameFragment","Called ViewModel")
-//        gameViewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
-        gameViewModel = ViewModelProvider(this)[GameViewModel::class.java]
+        gameViewModel = ViewModelProvider(this).get(GameViewModel::class.java)
+//        gameViewModel = ViewModelProvider(this)[GameViewModel::class.java]
 
         binding.gameViewModel = gameViewModel
         binding.lifecycleOwner = this
